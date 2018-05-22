@@ -30,7 +30,7 @@ class site_bchristianv::role::pe_puppet::compile_master {
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-    source => 'puppet:///modules/local_site/pemaster_hiera.yaml',
+    source => 'puppet:///modules/site_bchristianv/pemaster_hiera.yaml',
   }
 
 }
