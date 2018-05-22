@@ -7,4 +7,8 @@
 # @example
 #   include site_bchristianv::profile::base
 class site_bchristianv::profile::base {
+
+  include selinux
+
 }
+
