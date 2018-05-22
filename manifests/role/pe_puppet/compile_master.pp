@@ -8,6 +8,7 @@
 #   include site_bchristianv::role::pe_puppet::compile_master
 class site_bchristianv::role::pe_puppet::compile_master {
 
+  include site_bchristianv::profile::base
   include firewalld
 
   firewalld_port { 'Puppet Agent - TCP:8140':

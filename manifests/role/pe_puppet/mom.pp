@@ -7,8 +7,10 @@
 # @example
 #   include site_bchristianv::role::pe_puppet::mom
 class site_bchristianv::role::pe_puppet::mom {
-  include firewalld
+
+  include site_bchristianv::profile::base
   include site_bchristianv::role::pe_puppet::compile_master
+  include firewalld
 
   firewalld_service { 'Puppet Console - TCP:443':
     ensure  => present,

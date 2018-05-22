@@ -8,6 +8,7 @@
 #   include site_bchristianv::role::pe_puppet::reverse_proxy
 class site_bchristianv::role::pe_puppet::reverse_proxy {
 
+  include site_bchristianv::profile::base
   include firewalld
 
   firewalld_port { 'Puppet Agent - TCP:8140':
