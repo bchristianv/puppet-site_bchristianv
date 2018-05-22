@@ -7,4 +7,10 @@ fixtures:
     firewalld: 
       repo: "crayfishx/firewalld"
       ref:  "3.4.0"
+    inifile:
+      repo: "puppetlabs/inifile"
+      ref:  "2.1.0"
+    puppet_agent:
+      repo: "puppetlabs/puppet_agent"
+      ref:  "1.6.0"
 
