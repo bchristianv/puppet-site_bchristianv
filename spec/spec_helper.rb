@@ -21,3 +21,7 @@ end
 RSpec.configure do |c|
   c.default_facts = default_facts
 end
+
+RSpec.configure do |c|
+  c.hiera_config = 'spec/fixtures/hiera/hiera.yaml'
+end
