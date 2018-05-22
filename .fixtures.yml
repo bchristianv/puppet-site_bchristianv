@@ -3,4 +3,31 @@
 ---
 fixtures:
   forge_modules:
-#     stdlib: "puppetlabs/stdlib"
+#    apt:
+#      repo: "puppetlabs/apt"
+#      ref:  "2.4.0"
+    concat:
+      repo: "puppetlabs/concat"
+      ref:  "4.2.1"
+    firewalld: 
+      repo: "crayfishx/firewalld"
+      ref:  "3.4.0"
+    haproxy:
+      repo: "puppetlabs/haproxy"
+      ref:  "2.1.0"
+    inifile:
+      repo: "puppetlabs/inifile"
+      ref:  "2.1.0"
+    puppet_agent:
+      repo: "puppetlabs/puppet_agent"
+      ref:  "1.6.0"
+    selinux:
+      repo: "puppet/selinux"
+      ref:  "1.5.2"
+    stdlib:
+      repo: "puppetlabs/stdlib"
+      ref:  "4.25.1"
+#    transition:
+#      repo: "puppetlabs/transition"
+#      ref:  "0.1.1"
+

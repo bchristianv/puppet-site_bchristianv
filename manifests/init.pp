@@ -11,22 +11,26 @@
 #
 # @example
 #   include site_bchristianv
-class site_bchristianv {
+class site_bchristianv (
+  Optional[Array] $roles = $facts['local_site-roles']
+){
 
-  $role_classes = $facts['site_roles']
-
-  if ($role_classes !~ Array[String]) {
-    notify { 'No Array[String] type value found for $facts[\'site_roles\'] - No roles auto-included.': }
+  if (($roles !~ Array[String]) or ($roles == [])) {
+    notify { "No Array[String] type found for class ${title} parameter \$roles - No roles auto-included.": }
+    include site_bchristianv::profile::base
   }
   else {
-    $role_classes.each |String $role| {
+    $role.each |String $role| {
       if ($role == '') {
-        notify { 'Found an empty $facts[\'site_roles\'] value - No roles auto-included.': }
+        notify { "Empty value found in class ${title} parameter \$roles.": }
+        include site_bchristianv::profile::base
       }
       else {
-        include "site_bchristianv::role::${role}"
+        include $role
       }
+
     }
   }
 
 }
+
