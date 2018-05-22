@@ -20,7 +20,7 @@ class site_bchristianv (
     include site_bchristianv::profile::base
   }
   else {
-    $role.each |String $role| {
+    $roles.each |String $role| {
       if ($role == '') {
         notify { "Empty value found in class ${title} parameter \$roles.": }
         include site_bchristianv::profile::base
