@@ -92,8 +92,8 @@ class site_bchristianv::role::pe_puppet::reverse_proxy {
         ],
       },
       { 'http-check' => 'expect string running' },
-      { 'server'     => 'pemaster11.localdomain.local 10.68.86.11:8140 check check-ssl verify none' },
-      { 'server'     => 'pemaster12.localdomain.local 10.68.86.12:8140 check check-ssl verify none' },
+      { 'server'     => 'pecm21.localdomain.local 10.68.86.21:8140 check check-ssl verify none' },
+      { 'server'     => 'pecm22.localdomain.local 10.68.86.22:8140 check check-ssl verify none' },
     ],
   }
 
@@ -121,8 +121,8 @@ class site_bchristianv::role::pe_puppet::reverse_proxy {
         ],
       },
       { 'http-check' => 'expect string running' },
-      { 'server'     => 'pemaster11.localdomain.local 10.68.86.11:8142 check check-ssl verify none' },
-      { 'server'     => 'pemaster12.localdomain.local 10.68.86.12:8142 check check-ssl verify none' },
+      { 'server'     => 'pecm21.localdomain.local 10.68.86.21:8142 check check-ssl verify none' },
+      { 'server'     => 'pecm22.localdomain.local 10.68.86.22:8142 check check-ssl verify none' },
     ],
   }
 

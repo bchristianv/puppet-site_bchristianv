@@ -7,7 +7,7 @@
 # @example
 #   include site_bchristianv::profile::pe_puppet::agent
 class site_bchristianv::profile::pe_puppet::agent (
-  String $pe_master        = 'pemaster.localdomain.local',
+  String $pe_master        = 'pecm.localdomain.local',
   Boolean $manage_pe_agent = false,
   String $pe_agent_version = pe_compiling_server_aio_build()
 ){
