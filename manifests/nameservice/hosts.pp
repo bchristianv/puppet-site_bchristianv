@@ -13,29 +13,34 @@ class site_bchristianv::nameservice::hosts {
     target => '/etc/hosts',
   }
 
-  host { 'pemasterproxy10.localdomain.local':
-    host_aliases => ['pemasterproxy10', 'pemaster.localdomain.local', 'pemaster'],
-    ip           => '10.68.86.10',
-  }
-
-  host { 'pemaster11.localdomain.local':
-    host_aliases => ['pemaster11'],
+  host { 'pemom11.localdomain.local':
+    host_aliases => ['pemom11'],
     ip           => '10.68.86.11',
   }
 
-  host { 'pemaster12.localdomain.local':
-    host_aliases => ['pemaster12'],
-    ip           => '10.68.86.12',
+  host { 'pecmproxy20.localdomain.local':
+    host_aliases => ['pecmproxy20', 'pecm.localdomain.local', 'pecm'],
+    ip           => '10.68.86.20',
   }
 
-  host { 'peagent21.localdomain.local':
-    host_aliases => ['peagent21'],
+  host { 'pecm21.localdomain.local':
+    host_aliases => ['pecm21'],
     ip           => '10.68.86.21',
   }
 
-  host { 'peagent22.localdomain.local':
-    host_aliases => ['peagent22'],
+  host { 'pecm22.localdomain.local':
+    host_aliases => ['pecm22'],
     ip           => '10.68.86.22',
+  }
+
+  host { 'peagent31.localdomain.local':
+    host_aliases => ['peagent31'],
+    ip           => '10.68.86.31',
+  }
+
+  host { 'peagent32.localdomain.local':
+    host_aliases => ['peagent32'],
+    ip           => '10.68.86.32',
   }
 
 }
