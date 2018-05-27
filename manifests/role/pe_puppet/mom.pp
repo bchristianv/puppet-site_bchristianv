@@ -45,5 +45,13 @@ class site_bchristianv::role::pe_puppet::mom {
     protocol => 'tcp',
   }
 
+  file { '/etc/puppetlabs/puppet/hiera.yaml':
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    source => 'puppet:///modules/site_bchristianv/pemaster_hiera.yaml',
+  }
+
 }
 

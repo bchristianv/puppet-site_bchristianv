@@ -25,13 +25,5 @@ class site_bchristianv::role::pe_puppet::compile_master {
     protocol => 'tcp',
   }
 
-  file { '/etc/puppetlabs/puppet/hiera.yaml':
-    ensure => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-    source => 'puppet:///modules/site_bchristianv/pemaster_hiera.yaml',
-  }
-
 }
 
