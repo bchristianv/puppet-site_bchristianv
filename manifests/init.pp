@@ -12,7 +12,7 @@
 # @example
 #   include site_bchristianv
 class site_bchristianv (
-  Optional[Array] $roles = $facts['site_bchristianv-roles']
+  Optional[Array] $roles = $facts['site_roles']
 ){
 
   if (($roles !~ Array[String]) or ($roles == [])) {
