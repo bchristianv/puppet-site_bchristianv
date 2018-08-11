@@ -45,12 +45,23 @@ class site_bchristianv::role::pe_puppet::mom {
     protocol => 'tcp',
   }
 
+  puppet_authorization::rule { 'puppetlabs status simple':
+    match_request_path    => '/status/v1/simple',
+    match_request_type    => 'path',
+    match_request_method  => 'get',
+    allow_unauthenticated => true,
+    sort_order            => 900,
+    path                  => '/etc/puppetlabs/puppetserver/conf.d/auth.conf',
+    notify                => Service['pe-puppetserver'],
+  }
+
   file { '/etc/puppetlabs/puppet/hiera.yaml':
     ensure => file,
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
     source => 'puppet:///modules/site_bchristianv/pemaster_hiera.yaml',
+    notify => Service['pe-puppetserver'],
   }
 
 }
