@@ -25,5 +25,10 @@ class site_bchristianv::role::pe_puppet::compile_master {
     protocol => 'tcp',
   }
 
+  service { 'pe-puppetserver':
+    ensure => running,
+    enable => 'true',
+  }
+
 }
 
