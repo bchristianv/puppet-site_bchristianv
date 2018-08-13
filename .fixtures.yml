@@ -6,6 +6,9 @@ fixtures:
 #    apt:
 #      repo: "puppetlabs/apt"
 #      ref:  "2.4.0"
+    puppet_authorization:
+      repo: "puppetlabs/puppet_authorization"
+      ref:  "0.4.0"
     concat:
       repo: "puppetlabs/concat"
       ref:  "4.2.1"
@@ -15,6 +18,9 @@ fixtures:
     haproxy:
       repo: "puppetlabs/haproxy"
       ref:  "2.1.0"
+    hocon:
+      repo: "puppetlabs/hocon"
+      ref:  "1.0.1"
     inifile:
       repo: "puppetlabs/inifile"
       ref:  "2.1.0"
