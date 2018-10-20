@@ -10,6 +10,6 @@ class site_bchristianv::profile::base {
 
   include site_bchristianv::nameservice::hosts
   include selinux
+  include yum
 
 }
-
