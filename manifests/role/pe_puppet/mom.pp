@@ -38,13 +38,6 @@ class site_bchristianv::role::pe_puppet::mom {
     protocol => 'tcp',
   }
 
-  firewalld_port { 'Puppet MCollective - TCP:61613':
-    ensure   => present,
-    zone     => 'public',
-    port     => 61613,
-    protocol => 'tcp',
-  }
-
   file { '/etc/puppetlabs/puppet/hiera.yaml':
     ensure => file,
     owner  => 'root',
@@ -55,4 +48,3 @@ class site_bchristianv::role::pe_puppet::mom {
   }
 
 }
-
