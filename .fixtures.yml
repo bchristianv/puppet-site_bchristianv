@@ -3,9 +3,6 @@
 ---
 fixtures:
   forge_modules:
-#    apt:
-#      repo: "puppetlabs/apt"
-#      ref:  "2.4.0"
     puppet_authorization:
       repo: "puppetlabs/puppet_authorization"
       ref:  "0.4.0"
@@ -33,7 +30,7 @@ fixtures:
     stdlib:
       repo: "puppetlabs/stdlib"
       ref:  "4.25.1"
-#    transition:
-#      repo: "puppetlabs/transition"
-#      ref:  "0.1.1"
-
+  repositories:
+    yum:
+      repo: "git@github.com:bchristianv/puppet-yum.git"
+      ref:  "0.5.0"
