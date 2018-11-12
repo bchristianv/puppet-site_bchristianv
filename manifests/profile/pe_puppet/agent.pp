@@ -28,4 +28,3 @@ class site_bchristianv::profile::pe_puppet::agent (
   }
 
 }
-
