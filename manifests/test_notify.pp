@@ -14,4 +14,3 @@ class site_bchristianv::test_notify {
   notify { "Hiera 'message' key value is: ${hiera_message}": }
 
 }
-
