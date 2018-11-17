@@ -1,6 +1,6 @@
 {
   "name": "bchristianv-site_bchristianv",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "author": "bchristianv",
   "summary": "A Puppet module for site specific roles, profiles, and helper classes.",
   "license": "Apache-2.0",
@@ -13,10 +13,8 @@
     { "name":"puppetlabs/apt","version_requirement":">= 2.4.0 < 5.0.0" },
     { "name":"puppetlabs/concat","version_requirement":">= 4.2.1 < 5.0.0" },
     { "name":"puppetlabs/haproxy","version_requirement":">= 2.1.0 < 5.0.0" },
-    { "name":"puppetlabs/hocon","version_requirement":">= 1.0.1 < 5.0.0" },
     { "name":"puppetlabs/inifile","version_requirement":">= 2.1.0 < 5.0.0" },
     { "name":"puppetlabs/puppet_agent","version_requirement":">= 1.6.0 < 5.0.0" },
-    { "name":"puppetlabs/puppet_authorization","version_requirement":">= 0.4.0 < 5.0.0" },
     { "name":"puppetlabs/stdlib","version_requirement":">= 4.25.1 < 5.0.0" },
     { "name":"puppetlabs/transition","version_requirement":">= 0.1.1 < 5.0.0" },
     { "name":"bchristianv/yum","version_requirement":">= 0.5.0 < 5.0.0" }
