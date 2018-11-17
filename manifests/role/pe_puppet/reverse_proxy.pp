@@ -10,6 +10,7 @@ class site_bchristianv::role::pe_puppet::reverse_proxy {
 
   include site_bchristianv::profile::base
   include firewalld
+  include selinux
 
   firewalld_port { 'Puppet Agent - TCP:8140':
     ensure   => present,
@@ -92,8 +93,8 @@ class site_bchristianv::role::pe_puppet::reverse_proxy {
         ],
       },
       { 'http-check' => 'expect string running' },
-      { 'server'     => 'pecm21.localdomain.local 10.68.86.21:8140 check check-ssl verify none' },
-      { 'server'     => 'pecm22.localdomain.local 10.68.86.22:8140 check check-ssl verify none' },
+      { 'server'     => 'pecm31.cracklecode.local 172.16.80.31:8140 check check-ssl verify none' },
+      { 'server'     => 'pecm32.cracklecode.local 172.16.80.32:8140 check check-ssl verify none' },
     ],
   }
 
@@ -121,10 +122,9 @@ class site_bchristianv::role::pe_puppet::reverse_proxy {
         ],
       },
       { 'http-check' => 'expect string running' },
-      { 'server'     => 'pecm21.localdomain.local 10.68.86.21:8142 check port 8140 check-ssl verify none' },
-      { 'server'     => 'pecm22.localdomain.local 10.68.86.22:8142 check port 8140 check-ssl verify none' },
+      { 'server'     => 'pecm31.cracklecode.local 172.16.80.31:8142 check port 8140 check-ssl verify none' },
+      { 'server'     => 'pecm32.cracklecode.local 172.16.80.32:8142 check port 8140 check-ssl verify none' },
     ],
   }
 
 }
-
