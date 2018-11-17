@@ -5,8 +5,6 @@ describe 'site_bchristianv::role::pe_puppet::compile_master' do
     context "on #{os}" do
       let(:facts) { os_facts }
 
-      let(:pre_condition) { 'service { "pe-puppetserver": ensure => running, enable => true, }' }
-
       it { is_expected.to compile }
     end
   end
