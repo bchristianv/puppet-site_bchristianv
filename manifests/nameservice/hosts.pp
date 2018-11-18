@@ -43,4 +43,9 @@ class site_bchristianv::nameservice::hosts {
 #    ip           => '172.16.80.42',
 #  }
 
+#  host { 'peagent49.cracklecode.local':
+#    host_aliases => ['peagent49'],
+#    ip           => '172.16.80.49',
+#  }
+
 }
