@@ -33,10 +33,10 @@ class site_bchristianv::nameservice::hosts {
 #    ip           => '172.16.80.32',
 #  }
 
-#  host { 'peagent41.cracklecode.local':
-#    host_aliases => ['peagent41'],
-#    ip           => '172.16.80.41',
-#  }
+  host { 'peagent41.cracklecode.local':
+    host_aliases => ['peagent41'],
+    ip           => '172.16.80.41',
+  }
 
 #  host { 'peagent42.cracklecode.local':
 #    host_aliases => ['peagent42'],
