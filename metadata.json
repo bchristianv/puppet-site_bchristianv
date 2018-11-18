@@ -8,16 +8,46 @@
   "project_page": "https://github.com/bchristianv/puppet-site_bchristianv",
   "issues_url": "https://github.com/bchristianv/puppet-site_bchristianv/issues",
   "dependencies": [
-    { "name":"crayfishx/firewalld","version_requirement":">= 3.4.0 < 5.0.0" },
-    { "name":"puppet/selinux","version_requirement":">= 1.5.2 < 5.0.0" },
-    { "name":"puppetlabs/apt","version_requirement":">= 2.4.0 < 5.0.0" },
-    { "name":"puppetlabs/concat","version_requirement":">= 4.2.1 < 5.0.0" },
-    { "name":"puppetlabs/haproxy","version_requirement":">= 2.1.0 < 5.0.0" },
-    { "name":"puppetlabs/inifile","version_requirement":">= 2.1.0 < 5.0.0" },
-    { "name":"puppetlabs/puppet_agent","version_requirement":">= 1.6.0 < 5.0.0" },
-    { "name":"puppetlabs/stdlib","version_requirement":">= 4.25.1 < 5.0.0" },
-    { "name":"puppetlabs/transition","version_requirement":">= 0.1.1 < 5.0.0" },
-    { "name":"bchristianv/yum","version_requirement":">= 0.5.0 < 5.0.0" }
+    {
+      "name": "crayfishx/firewalld",
+      "version_requirement": ">= 3.4.0 < 5.0.0"
+    },
+    {
+      "name": "puppet/selinux",
+      "version_requirement": ">= 1.5.2 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": ">= 2.4.0 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/concat",
+      "version_requirement": ">= 4.2.1 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/haproxy",
+      "version_requirement": ">= 2.1.0 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/inifile",
+      "version_requirement": ">= 2.1.0 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/puppet_agent",
+      "version_requirement": ">= 1.6.0 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.25.1 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/transition",
+      "version_requirement": ">= 0.1.1 < 5.0.0"
+    },
+    {
+      "name": "bchristianv/yum",
+      "version_requirement": ">= 0.5.1 < 5.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
@@ -39,7 +69,7 @@
       "version_requirement": ">= 4.7.0 < 6.0.0"
     }
   ],
-  "pdk-version": "1.7.0",
+  "pdk-version": "1.7.1",
   "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
-  "template-ref": "1.7.0-0-g57412ed"
+  "template-ref": "1.7.1-0-g810b982"
 }
