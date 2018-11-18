@@ -27,4 +27,4 @@ fixtures:
   repositories:
     yum:
       repo: "https://github.com/bchristianv/puppet-yum.git"
-      ref:  "0.5.1"
+      ref:  "0.5.2"
