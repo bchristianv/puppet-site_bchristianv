@@ -50,7 +50,6 @@ class site_bchristianv::nameservice::hosts (
       }
     }
     'pos': {  }
-    default: {  }
   }
 
 }
