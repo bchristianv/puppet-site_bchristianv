@@ -1,11 +1,13 @@
 # site_bchristianv::nameservice::hosts
 #
-# A description of what this class does
+# Create local hosts file entries for PE and POS testbed environments lacking
+# DNS entries.
 #
-# @summary A short summary of the purpose of this class
+# @summary Create local hosts file entries for PE and POS testbed environments.
 #
 # @example
 #   include site_bchristianv::nameservice::hosts
+#
 class site_bchristianv::nameservice::hosts {
 
   Host {
