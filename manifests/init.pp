@@ -20,15 +20,15 @@ class site_bchristianv (
   Optional[Array] $roles = $facts['site_roles']
 ){
 
+  include site_bchristianv::profile::base
+
   if (($roles !~ Array[String]) or ($roles == [])) {
     notify { "No Array[String] type found for class ${title} parameter \$roles - No roles auto-included.": }
-    include site_bchristianv::profile::base
   }
   else {
     $roles.each |String $role| {
       if ($role == '') {
         notify { "Empty value found in class ${title} parameter \$roles.": }
-        include site_bchristianv::profile::base
       }
       else {
         include $role
