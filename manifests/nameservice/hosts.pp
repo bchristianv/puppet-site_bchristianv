@@ -8,6 +8,11 @@
 # @example
 #   include site_bchristianv::nameservice::hosts
 #
+# @param [Enum] puppet_platform
+#   The Puppet platform in use. Either `pe` for Puppet Enterprise, or
+#   `pos` for Puppet Open Source.
+#   Default value: nil.
+#
 class site_bchristianv::nameservice::hosts (
   Enum['pe', 'pos'] $puppet_platform
 ){
