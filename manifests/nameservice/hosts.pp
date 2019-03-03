@@ -55,6 +55,7 @@ class site_bchristianv::nameservice::hosts (
       }
     }
     'pos': {  }
+    default: { notify { "Should never get here in class ${title}.": } }
   }
 
 }
