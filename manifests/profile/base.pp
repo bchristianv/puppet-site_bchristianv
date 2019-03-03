@@ -1,7 +1,7 @@
 # site_bchristianv::profile::base
 #
 # Apply a base configuration to all systems with ability to selectively
-# disable management of certain configuraitons using feature flags.
+# disable management of certain configurations using feature flags.
 #
 # @summary Apply a base configuration to all systems.
 #
