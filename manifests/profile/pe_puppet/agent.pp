@@ -1,4 +1,3 @@
-# site_bchristianv::profile::pe_puppet::agent
 #
 # Manage Puppet Enterprise agent settings and version.
 #
