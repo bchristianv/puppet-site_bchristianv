@@ -1,4 +1,3 @@
-# site_bchristianv::nameservice::hosts
 #
 # Create local hosts file entries for PE and POS testbed environments lacking
 # DNS entries.
