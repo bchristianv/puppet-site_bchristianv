@@ -1,6 +1,6 @@
 #
 # Used in conjunction with site_bchristianv::hiera_lookup_include as default
-# value. Will notify that a hiera lookup failed instead of causing a catalog
+# value, will notify that a hiera lookup failed instead of causing a catalog
 # compilation error for a non-existant hiera key.
 #
 # @summary Notify that a hiera lookup failed when used with hiera_lookup_include
