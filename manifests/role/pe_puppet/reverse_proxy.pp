@@ -1,4 +1,3 @@
-# site_bchristianv::role::pe_puppet::reverse_proxy
 #
 # Manage reverse-proxy (HAProxy) settings for a Puppet Enterprise compile
 # master pool.
@@ -85,6 +84,7 @@ class site_bchristianv::role::pe_puppet::reverse_proxy {
     ],
   }
 
+  # ToDo(bchristianv): parameterize the `server` parameter under the `options` parameter - hostname/ipaddress
   haproxy::backend { 'pe8140_back':
     options => [
       { 'balance'    => 'roundrobin' },
@@ -114,6 +114,7 @@ class site_bchristianv::role::pe_puppet::reverse_proxy {
     ],
   }
 
+  # ToDo(bchristianv): parameterize the `server` parameter under the `options` parameter - hostname/ipaddress
   haproxy::backend { 'pe8142_back':
     options => [
       { 'balance'    => 'roundrobin' },

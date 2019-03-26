@@ -1,4 +1,3 @@
-# site_bchristianv::role::pe_puppet::mom
 #
 # Manage Puppet Enterprise master of masters settings.
 #

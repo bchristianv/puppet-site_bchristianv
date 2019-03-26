@@ -1,4 +1,3 @@
-# site_bchristianv::role::pe_puppet::compile_master
 #
 # Manage Puppet Enterprise compile master settings.
 #
