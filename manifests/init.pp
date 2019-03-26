@@ -1,4 +1,3 @@
-# site_bchristianv
 #
 # Assign puppet role(s) using values from a site_roles fact, otherwise assign
 # a base profile. $site_roles is an array of strings.

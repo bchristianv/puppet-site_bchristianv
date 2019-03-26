@@ -1,4 +1,3 @@
-# site_bchristianv::test_notify
 #
 # A simple class that provides a notification message for testing purposes.
 # Uses a hiera lookup for message content.

@@ -1,4 +1,3 @@
-# site_bchristianv::hiera_lookup_include
 #
 # Use a hiera lookup to include classes in the catalog.
 #

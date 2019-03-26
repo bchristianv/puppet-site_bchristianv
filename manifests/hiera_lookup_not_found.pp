@@ -1,4 +1,3 @@
-# site_bchristianv::hiera_lookup_not_found
 #
 # Used in conjunction with site_bchristianv::hiera_lookup_include as default
 # value. Will notify that a hiera lookup failed instead of causing a catalog
