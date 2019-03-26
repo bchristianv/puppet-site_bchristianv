@@ -1,7 +1,6 @@
 #
-# Use a hiera lookup to include classes in the catalog.
-#
-# Provides a default value to prevent failed lookups that would result in a
+# Use a hiera lookup to include classes in the catalog. Provides a
+# default value to prevent failed lookups that would result in a
 # catalog compilation error.
 #
 # @summary Use a hiera lookup to include classes in the catalog.
