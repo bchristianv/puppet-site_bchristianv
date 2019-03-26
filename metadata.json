@@ -4,9 +4,9 @@
   "author": "bchristianv",
   "summary": "A Puppet module for site specific roles, profiles, and helper classes.",
   "license": "Apache-2.0",
-  "source": "https://github.com/bchristianv/puppet-site_bchristianv.git",
-  "project_page": "https://github.com/bchristianv/puppet-site_bchristianv",
-  "issues_url": "https://github.com/bchristianv/puppet-site_bchristianv/issues",
+  "source": "https://github.com/bchristianv/puppet_mod-site_bchristianv.git",
+  "project_page": "https://github.com/bchristianv/puppet_mod-site_bchristianv",
+  "issues_url": "https://github.com/bchristianv/puppet_mod-site_bchristianv/issues",
   "dependencies": [
     {
       "name": "crayfishx/firewalld",
