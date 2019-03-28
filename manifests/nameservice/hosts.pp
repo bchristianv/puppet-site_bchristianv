@@ -1,60 +1,48 @@
 #
-# Create local hosts file entries for PE and POS testbed environments lacking
-# DNS entries.
+# Create local `/etc/hosts` entries for environments lacking external DNS.
 #
-# @summary Create local hosts file entries for PE and POS testbed environments.
+# @summary Create local `/etc/hosts` entries for environments lacking external DNS.
 #
-# @example
+# @example Simple include usage
 #   include site_bchristianv::nameservice::hosts
 #
-# @param [Enum] puppet_platform
-#   The Puppet platform in use. Either `pe` for Puppet Enterprise, or
-#   `pos` for Puppet Open Source.
-#   Default value: nil.
+# @example Hiera parameter lookup
+#   ---
+#   site_bchristianv::nameservice::hosts::entries:
+#     host.localdomain.local:
+#       ensure: present
+#       host_aliases:
+#         - 'host'
+#       ip: '1.2.3.4'
+#       target: '/etc/hosts'
+#     ...
+#   include site_bchristianv::nameservice::hosts
+#
+# @example Resource-like class declaration usage
+#   $hosts = {
+#     host.localdomain.local: {
+#       ensure: present,
+#       host_aliases: ['host'],
+#       ip: '1.2.3.4',
+#       target: '/etc/hosts',
+#     },
+#     {...}
+#   }
+#   site_bchristianv::nameservice::hosts { 'namevar':
+#     entries => $hosts
+#   }
+#
+# @param [Hash] entries
+#   A hash of (host resource) entry names and their parameter key/values. Default value: { }.
 #
 class site_bchristianv::nameservice::hosts (
-  Enum['pe', 'pos'] $puppet_platform
+  Hash $entries = {}
 ){
 
-  Host {
-    ensure => present,
-    target => '/etc/hosts',
-  }
-
-  case $puppet_platform {
-    'pe': {
-      host { 'pemom11.localdomain.local':
-        host_aliases => ['pemom11', 'pemaster.localdomain.local', 'pemaster'],
-        ip           => '172.16.80.11',
-      }
-
-      host { 'pecmproxy21.localdomain.local':
-        host_aliases => ['pecmproxy21', 'pecm.localdomain.local', 'pecm', 'pemaster.localdomain.local', 'pemaster'],
-        ip           => '172.16.80.21',
-      }
-
-      host { 'pecm31.localdomain.local':
-        host_aliases => ['pecm31'],
-        ip           => '172.16.80.31',
-      }
-
-      host { 'pecm32.localdomain.local':
-        host_aliases => ['pecm32'],
-        ip           => '172.16.80.32',
-      }
-
-      host { 'peagent41.localdomain.local':
-        host_aliases => ['peagent41'],
-        ip           => '172.16.80.41',
-      }
-
-      host { 'peagent42.localdomain.local':
-        host_aliases => ['peagent42'],
-        ip           => '172.16.80.42',
-      }
+  $entries.each |String $entry, Hash $properties| {
+    host { $entry:
+      * => $properties,
     }
-    'pos': {  }
-    default: { notify { "Should never get here in class ${title}.": } }
   }
 
 }
