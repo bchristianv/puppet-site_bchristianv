@@ -8,7 +8,31 @@
 # @example
 #   include site_bchristianv::role::pe_puppet::reverse_proxy
 #
-class site_bchristianv::role::pe_puppet::reverse_proxy {
+# @param [Array[Hash]] pe_8140_backend_options_servers
+#   The `server` parameter(s) for the backend server pool listening on port 8140.
+#   i.e., the `server` parameter for the `options` array.
+#   Default value: nil.
+#
+# @param [Array[Hash]] pe_8142_backend_options_servers
+#   The `server` parameter(s) for the backend server pool listening on port 8142.
+#   i.e., the `server` parameter for the `options` array.
+#   Default value: nil.
+#
+class site_bchristianv::role::pe_puppet::reverse_proxy (
+  Array $pe_8140_backend_options_servers,
+  Array $pe_8142_backend_options_servers
+){
+
+  $backend_options = [
+    { 'balance'    => 'roundrobin' },
+    { 'mode'       => 'tcp' },
+    { 'option'     => [
+      'tcplog',
+      'httpchk GET /status/v1/simple HTTP/1.0',
+    ],
+    },
+    { 'http-check' => 'expect string running' }
+  ]
 
   include firewalld
   include selinux
@@ -84,20 +108,10 @@ class site_bchristianv::role::pe_puppet::reverse_proxy {
     ],
   }
 
-  # ToDo(bchristianv): parameterize the `server` parameter under the `options` parameter - hostname/ipaddress
+  $pe_8140_backend_options = $backend_options + $pe_8140_backend_options_servers
+
   haproxy::backend { 'pe8140_back':
-    options => [
-      { 'balance'    => 'roundrobin' },
-      { 'mode'       => 'tcp' },
-      { 'option'     => [
-        'tcplog',
-        'httpchk GET /status/v1/simple HTTP/1.0',
-        ],
-      },
-      { 'http-check' => 'expect string running' },
-      { 'server'     => 'pecm31.localdomain.local 172.16.80.31:8140 check check-ssl verify none' },
-      { 'server'     => 'pecm32.localdomain.local 172.16.80.32:8140 check check-ssl verify none' },
-    ],
+    options => $pe_8140_backend_options
   }
 
   haproxy::frontend { 'pe8142_front':
@@ -114,20 +128,10 @@ class site_bchristianv::role::pe_puppet::reverse_proxy {
     ],
   }
 
-  # ToDo(bchristianv): parameterize the `server` parameter under the `options` parameter - hostname/ipaddress
+  $pe_8142_backend_options = $backend_options + $pe_8142_backend_options_servers
+
   haproxy::backend { 'pe8142_back':
-    options => [
-      { 'balance'    => 'roundrobin' },
-      { 'mode'       => 'tcp' },
-      { 'option'     => [
-        'tcplog',
-        'httpchk GET /status/v1/simple HTTP/1.0',
-        ],
-      },
-      { 'http-check' => 'expect string running' },
-      { 'server'     => 'pecm31.localdomain.local 172.16.80.31:8142 check port 8140 check-ssl verify none' },
-      { 'server'     => 'pecm32.localdomain.local 172.16.80.32:8142 check port 8140 check-ssl verify none' },
-    ],
+    options => $pe_8142_backend_options
   }
 
 }
