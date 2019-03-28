@@ -1,4 +1,6 @@
+#
 # Credit to SIMP 'https://github.com/simp/pupmod-simp-simplib'
+#
 function site_bchristianv::knockout_value(Array $arg) >> Array {
 
   $include_array = $arg.filter |$mem_obj| {
@@ -16,4 +18,3 @@ function site_bchristianv::knockout_value(Array $arg) >> Array {
   ($include_array - $exclude_array)
 
 }
-

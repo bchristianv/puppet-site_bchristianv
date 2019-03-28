@@ -1,51 +1,48 @@
-# site_bchristianv::nameservice::hosts
 #
-# A description of what this class does
+# Create local `/etc/hosts` entries for environments lacking external DNS.
 #
-# @summary A short summary of the purpose of this class
+# @summary Create local `/etc/hosts` entries for environments lacking external DNS.
 #
-# @example
+# @example Simple include usage
 #   include site_bchristianv::nameservice::hosts
-class site_bchristianv::nameservice::hosts {
+#
+# @example Hiera parameter lookup
+#   ---
+#   site_bchristianv::nameservice::hosts::entries:
+#     host.localdomain.local:
+#       ensure: present
+#       host_aliases:
+#         - 'host'
+#       ip: '1.2.3.4'
+#       target: '/etc/hosts'
+#     ...
+#   include site_bchristianv::nameservice::hosts
+#
+# @example Resource-like class declaration usage
+#   $hosts = {
+#     host.localdomain.local: {
+#       ensure: present,
+#       host_aliases: ['host'],
+#       ip: '1.2.3.4',
+#       target: '/etc/hosts',
+#     },
+#     {...}
+#   }
+#   site_bchristianv::nameservice::hosts { 'namevar':
+#     entries => $hosts
+#   }
+#
+# @param [Hash] entries
+#   A hash of (host resource) entry names and their parameter key/values. Default value: { }.
+#
+class site_bchristianv::nameservice::hosts (
+  Hash $entries = {}
+){
 
-  Host {
-    ensure => present,
-    target => '/etc/hosts',
+  $entries.each |String $entry, Hash $properties| {
+    host { $entry:
+      * => $properties,
+    }
   }
-
-  host { 'pemom11.cracklecode.local':
-    host_aliases => ['pemom11', 'pemaster.cracklecode.local', 'pemaster'],
-    ip           => '172.16.80.11',
-  }
-
-#  host { 'pecmproxy21.cracklecode.local':
-#    host_aliases => ['pecmproxy21', 'pecm.cracklecode.local', 'pecm', 'pemaster.cracklecode.local', 'pemaster'],
-#    ip           => '172.16.80.21',
-#  }
-
-#  host { 'pecm31.cracklecode.local':
-#    host_aliases => ['pecm31'],
-#    ip           => '172.16.80.31',
-#  }
-
-#  host { 'pecm32.cracklecode.local':
-#    host_aliases => ['pecm32'],
-#    ip           => '172.16.80.32',
-#  }
-
-  host { 'peagent41.cracklecode.local':
-    host_aliases => ['peagent41'],
-    ip           => '172.16.80.41',
-  }
-
-#  host { 'peagent42.cracklecode.local':
-#    host_aliases => ['peagent42'],
-#    ip           => '172.16.80.42',
-#  }
-
-#  host { 'peagent49.cracklecode.local':
-#    host_aliases => ['peagent49'],
-#    ip           => '172.16.80.49',
-#  }
 
 }

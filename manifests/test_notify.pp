@@ -1,11 +1,12 @@
-# site_bchristianv::test_notify
 #
-# A description of what this class does
+# A simple class that provides a notification message for testing purposes.
+# Uses a hiera lookup for message content.
 #
-# @summary A short summary of the purpose of this class
+# @summary A simple class that provides a notification message.
 #
 # @example
 #   include site_bchristianv::test_notify
+#
 class site_bchristianv::test_notify {
 
   notify { "This is a notification from inside the ${title} class.": }

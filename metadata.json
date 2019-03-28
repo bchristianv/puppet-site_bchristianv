@@ -1,12 +1,12 @@
 {
   "name": "bchristianv-site_bchristianv",
-  "version": "1.0.20",
+  "version": "1.2.0",
   "author": "bchristianv",
   "summary": "A Puppet module for site specific roles, profiles, and helper classes.",
   "license": "Apache-2.0",
-  "source": "https://github.com/bchristianv/puppet-site_bchristianv.git",
-  "project_page": "https://github.com/bchristianv/puppet-site_bchristianv",
-  "issues_url": "https://github.com/bchristianv/puppet-site_bchristianv/issues",
+  "source": "https://github.com/bchristianv/puppet_mod-site_bchristianv.git",
+  "project_page": "https://github.com/bchristianv/puppet_mod-site_bchristianv",
+  "issues_url": "https://github.com/bchristianv/puppet_mod-site_bchristianv/issues",
   "dependencies": [
     {
       "name": "crayfishx/firewalld",
@@ -46,7 +46,7 @@
     },
     {
       "name": "bchristianv/yum",
-      "version_requirement": ">= 0.5.1 < 5.0.0"
+      "version_requirement": ">= 0.5.2 < 5.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -69,7 +69,7 @@
       "version_requirement": ">= 4.7.0 < 6.0.0"
     }
   ],
-  "pdk-version": "1.9.0",
+  "pdk-version": "1.9.1",
   "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
-  "template-ref": "1.9.0-0-g7281db5"
+  "template-ref": "1.9.1-0-g6945d31"
 }

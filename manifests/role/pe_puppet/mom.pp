@@ -1,14 +1,13 @@
-# site_bchristianv::role::pe_puppet::mom
 #
-# A description of what this class does
+# Manage Puppet Enterprise master of masters settings.
 #
-# @summary A short summary of the purpose of this class
+# @summary Manage Puppet Enterprise master of masters settings.
 #
 # @example
 #   include site_bchristianv::role::pe_puppet::mom
+#
 class site_bchristianv::role::pe_puppet::mom {
 
-  include site_bchristianv::profile::base
   include site_bchristianv::profile::pe_puppet::compile_master
   include firewalld
 
@@ -44,7 +43,7 @@ class site_bchristianv::role::pe_puppet::mom {
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-    source => 'puppet:///modules/site_bchristianv/pemaster_hiera.yaml',
+    source => 'puppet:///modules/site_bchristianv/role/pe_puppet/mom/hiera.yaml',
     notify => Service['pe-puppetserver'],
   }
 
