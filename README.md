@@ -5,12 +5,6 @@ Welcome to your new module. A short overview of the generated parts can be found
 
 Below you'll find the default README template ready for some content.
 
-
-
-
-
-
-
 #### Table of Contents
 
 1. [Description](#description)
