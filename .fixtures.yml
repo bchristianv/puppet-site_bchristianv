@@ -18,9 +18,15 @@ fixtures:
     inifile:
       repo: "puppetlabs/inifile"
       ref:  "3.0.0"
+    postgresql:
+      repo: "puppetlabs/postgresql"
+      ref:  "6.1.0"
 #    puppet_agent:
 #      repo: "puppetlabs/puppet_agent"
 #      ref:  "2.1.2"
+    puppetdb:
+      repo: "puppetlabs/puppetdb"
+      ref:  "7.3.0"
     puppetserver:
       repo: "puppet/puppetserver"
       ref:  "3.0.1"
