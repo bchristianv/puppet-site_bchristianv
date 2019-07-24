@@ -1,6 +1,6 @@
 {
   "name": "bchristianv-site_bchristianv",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "author": "bchristianv",
   "summary": "A Puppet module for site specific roles, profiles, and helper classes.",
   "license": "Apache-2.0",
@@ -33,6 +33,10 @@
       "version_requirement": ">= 2.1.2 < 7.0.0"
     },
     {
+      "name": "puppetlabs/puppetdb",
+      "version_requirement": ">= 7.3.0 < 8.0.0"
+    },
+    {
       "name": "puppetlabs/stdlib",
       "version_requirement": ">= 6.0.0 < 7.0.0"
     },
@@ -58,7 +62,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.7.0 < 6.0.0"
+      "version_requirement": ">= 4.7.0 < 7.0.0"
     }
   ],
   "pdk-version": "1.11.1",

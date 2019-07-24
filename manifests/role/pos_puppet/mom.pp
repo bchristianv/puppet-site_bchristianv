@@ -115,13 +115,13 @@ class site_bchristianv::role::pos_puppet::mom (
 
     file { '/root/.ssh/config':
       ensure  => present,
-      content => "Host ${control_repo_sshkey_name}\n\tHostName ${control_repo_sshkey_name}\n\tIdentityFile ${control_repo_private_sshkey}\n",
+      content => "Host ${control_repo_sshkey_name}\n\tIdentityFile ${control_repo_private_sshkey}\n",
     }
   }
 
   class { 'r10k':
     remote       => $r10k_git_remote,
-    git_settings =>  $git_settings,
+    git_settings => $git_settings,
     require      => Class['puppetserver::install']
   }
 
@@ -134,6 +134,32 @@ class site_bchristianv::role::pos_puppet::mom (
     type   => $control_repo_sshkey_type,
     target => '/root/.ssh/known_hosts',
     key    => $control_repo_sshkey_key,
+  }
+
+  file { '/etc/puppetlabs/facter/facts.d/puppetserver_is_configured.json':
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => "{\n\t\"puppetserver_is_configured\": true\n}\n",
+    require => Class['puppetserver::service'],
+  }
+
+  if $facts['puppetserver_is_configured'] {
+    if $manage_firewalld {
+      firewalld_port { 'Puppet DB - TCP:8081':
+        ensure   => present,
+        zone     => 'public',
+        port     => 8081,
+        protocol => 'tcp',
+      }
+    }
+
+    class { 'puppetdb':
+      manage_firewall => false,
+    }
+
+    class { 'puppetdb::master::config': }
   }
 
 }
