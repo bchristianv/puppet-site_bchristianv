@@ -86,6 +86,10 @@ class site_bchristianv::role::pos_puppet::mom (
     value   => $facts['networking']['fqdn'],
   }
 
+  puppetserver::config::puppetserver { 'ca.conf/certificate-authority/allow-subject-alt-names':
+    value => 'true',
+  }
+
   class { 'puppetserver':
     config  => {
       'java_args' => {
@@ -93,7 +97,10 @@ class site_bchristianv::role::pos_puppet::mom (
         'xmx' => $puppetserver_xmx,
       }
     },
-    require => Ini_setting['main-dns_alt_names', 'agent-server'],
+    require => [
+      Ini_setting['main-dns_alt_names', 'agent-server'],
+      Puppetserver::Config::Puppetserver['ca.conf/certificate-authority/allow-subject-alt-names'],
+    ]
   }
 
   class { 'puppetserver::hiera::eyaml':
