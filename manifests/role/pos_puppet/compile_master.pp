@@ -1,10 +1,10 @@
 #
-# Manage Puppet Open Source master of masters settings.
+# Manage Puppet Open Source compile master settings.
 #
-# @summary Manage Puppet Open Source master of masters settings.
+# @summary Manage Puppet Open Source compile master settings.
 #
 # @example
-#   include site_bchristianv::role::pos_puppet::mom
+#   include site_bchristianv::role::pos_puppet::compile_master
 #
 # @param [String] r10k_git_remote
 #   The r10k `remote` git control repository source URL setting.
@@ -20,6 +20,10 @@
 #
 # @param [String] control_repo_sshkey_key
 #   The control repository sshkey key itself.
+#   Default value: nil.
+#
+# @param [Stdlib::Fqdn] puppet_mom_fqdn
+#   Fully qualified domain name of the puppet master of masters server.
 #   Default value: nil.
 #
 # @param [Boolean] manage_firewalld
@@ -46,11 +50,12 @@
 #   The absolute path to the private sshkey with read access to the control repository.
 #   Default value: /root/.ssh/pos_control-id_rsa.
 #
-class site_bchristianv::role::pos_puppet::mom (
+class site_bchristianv::role::pos_puppet::compile_master (
   String $r10k_git_remote,
   Stdlib::Host $control_repo_sshkey_name,
   String $control_repo_sshkey_type,
   String $control_repo_sshkey_key,
+  Stdlib::Fqdn $puppet_mom_fqdn,
   Boolean $manage_firewalld = false,
   Array[Stdlib::Fqdn] $dns_alt_names = ['puppet.localdomain.local', 'puppet'],
   String $puppetserver_xms = '2g',
@@ -70,6 +75,14 @@ class site_bchristianv::role::pos_puppet::mom (
     }
   }
 
+  ini_setting { 'main-ca_server':
+    ensure  => present,
+    path    => '/etc/puppetlabs/puppet/puppet.conf',
+    section => 'main',
+    setting => 'ca_server',
+    value   => $puppet_mom_fqdn,
+  }
+
   ini_setting { 'main-dns_alt_names':
     ensure  => present,
     path    => '/etc/puppetlabs/puppet/puppet.conf',
@@ -83,14 +96,49 @@ class site_bchristianv::role::pos_puppet::mom (
     path    => '/etc/puppetlabs/puppet/puppet.conf',
     section => 'agent',
     setting => 'server',
-    value   => $facts['networking']['fqdn'],
+    value   => $puppet_mom_fqdn,
   }
 
-  puppetserver::config::puppetserver { 'ca.conf/certificate-authority/allow-subject-alt-names':
-    value => 'true',
+  file_line { 'comment_certificate-authority-service':
+    path  => '/etc/puppetlabs/puppetserver/services.d/ca.cfg',
+    line  => '#puppetlabs.services.ca.certificate-authority-service/certificate-authority-service',
+    match => 'puppetlabs.services.ca.certificate-authority-service/certificate-authority-service',
+  }
+
+  file_line { 'uncomment_authority-disabled-service':
+    path  => '/etc/puppetlabs/puppetserver/services.d/ca.cfg',
+    line  => 'puppetlabs.services.ca.certificate-authority-disabled-service/certificate-authority-disabled-service',
+    match => '#puppetlabs.services.ca.certificate-authority-disabled-service/certificate-authority-disabled-service',
+  }
+
+  service { 'puppet':
+    ensure  => running,
+    enable  => true,
+    require => Ini_setting['main-ca_server','main-dns_alt_names', 'agent-server'],
+  }
+
+  file { '/etc/puppetlabs/facter/facts.d/poscm_is_configured.json':
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => "{\n\t\"poscm_is_configured\": true\n}\n",
+    require => Service['puppet'],
+  }
+
+  if $facts['poscm_is_configured'] {
+    $puppetserver_start = true
+
+    class { 'puppetdb::master::config':
+      puppetdb_server => $puppet_mom_fqdn,
+    }
+  }
+  else {
+    $puppetserver_start = false
   }
 
   class { 'puppetserver':
+    start   => $puppetserver_start,
     config  => {
       'java_args' => {
         'xms' => $puppetserver_xms,
@@ -98,9 +146,9 @@ class site_bchristianv::role::pos_puppet::mom (
       }
     },
     require => [
-      Ini_setting['main-dns_alt_names', 'agent-server'],
-      Puppetserver::Config::Puppetserver['ca.conf/certificate-authority/allow-subject-alt-names'],
-    ]
+      Ini_setting['main-ca_server','main-dns_alt_names', 'agent-server'],
+      File_line['comment_certificate-authority-service', 'uncomment_authority-disabled-service'],
+    ],
   }
 
   class { 'puppetserver::hiera::eyaml':
@@ -141,32 +189,6 @@ class site_bchristianv::role::pos_puppet::mom (
     type   => $control_repo_sshkey_type,
     target => '/root/.ssh/known_hosts',
     key    => $control_repo_sshkey_key,
-  }
-
-  file { '/etc/puppetlabs/facter/facts.d/posmom_is_configured.json':
-    ensure  => present,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => "{\n\t\"posmom_is_configured\": true\n}\n",
-    require => Class['puppetserver::service'],
-  }
-
-  if $facts['posmom_is_configured'] {
-    if $manage_firewalld {
-      firewalld_port { 'Puppet DB - TCP:8081':
-        ensure   => present,
-        zone     => 'public',
-        port     => 8081,
-        protocol => 'tcp',
-      }
-    }
-
-    class { 'puppetdb':
-      manage_firewall => false,
-    }
-
-    class { 'puppetdb::master::config': }
   }
 
 }
