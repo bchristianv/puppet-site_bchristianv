@@ -136,16 +136,16 @@ class site_bchristianv::role::pos_puppet::mom (
     key    => $control_repo_sshkey_key,
   }
 
-  file { '/etc/puppetlabs/facter/facts.d/puppetserver_is_configured.json':
+  file { '/etc/puppetlabs/facter/facts.d/posmom_is_configured.json':
     ensure  => present,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => "{\n\t\"puppetserver_is_configured\": true\n}\n",
+    content => "{\n\t\"posmom_is_configured\": true\n}\n",
     require => Class['puppetserver::service'],
   }
 
-  if $facts['puppetserver_is_configured'] {
+  if $facts['posmom_is_configured'] {
     if $manage_firewalld {
       firewalld_port { 'Puppet DB - TCP:8081':
         ensure   => present,
