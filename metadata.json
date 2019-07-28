@@ -1,6 +1,6 @@
 {
   "name": "bchristianv-site_bchristianv",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "author": "bchristianv",
   "summary": "A Puppet module for site specific roles, profiles, and helper classes.",
   "license": "Apache-2.0",
