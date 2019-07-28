@@ -131,6 +131,7 @@ class site_bchristianv::role::pos_puppet::compile_master (
 
     class { 'puppetdb::master::config':
       puppetdb_server => $puppet_mom_fqdn,
+      create_puppet_service_resource => false,
     }
   }
   else {
