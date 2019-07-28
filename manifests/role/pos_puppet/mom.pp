@@ -86,8 +86,11 @@ class site_bchristianv::role::pos_puppet::mom (
     value   => $facts['networking']['fqdn'],
   }
 
-  puppetserver::config::puppetserver { 'ca.conf/certificate-authority/allow-subject-alt-names':
-    value => 'true',
+  hocon_setting { 'ca.conf/certificate-authority/allow-subject-alt-names':
+    ensure  => present,
+    path    => '/etc/puppetlabs/puppetserver/conf.d/ca.conf',
+    setting => 'certificate-authority.allow-subject-alt-names',
+    value   => true,
   }
 
   class { 'puppetserver':
