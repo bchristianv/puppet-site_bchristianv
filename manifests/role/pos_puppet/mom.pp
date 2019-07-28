@@ -102,7 +102,7 @@ class site_bchristianv::role::pos_puppet::mom (
     },
     require => [
       Ini_setting['main-dns_alt_names', 'agent-server'],
-      Puppetserver::Config::Puppetserver['ca.conf/certificate-authority/allow-subject-alt-names'],
+      Hocon_setting['ca.conf/certificate-authority/allow-subject-alt-names'],
     ]
   }
 
