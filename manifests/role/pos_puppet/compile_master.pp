@@ -111,27 +111,6 @@ class site_bchristianv::role::pos_puppet::compile_master (
     match => '#puppetlabs.services.ca.certificate-authority-disabled-service/certificate-authority-disabled-service',
   }
 
-  hocon_setting { 'webserver.conf/webserver/ssl-cert':
-    ensure  => present,
-    path    => '/etc/puppetlabs/puppetserver/conf.d/webserver.conf',
-    setting => 'webserver.ssl-cert',
-    value   => "/etc/puppetlabs/puppet/ssl/certs/${facts['networking']['fqdn']}.pem",
-  }
-
-  hocon_setting { 'webserver.conf/webserver/ssl-key':
-    ensure  => present,
-    path    => '/etc/puppetlabs/puppetserver/conf.d/webserver.conf',
-    setting => 'webserver.ssl-key',
-    value   => "/etc/puppetlabs/puppet/ssl/private_keys/${facts['networking']['fqdn']}.pem",
-  }
-
-  hocon_setting { 'webserver.conf/webserver/ssl-ca-cert':
-    ensure  => present,
-    path    => '/etc/puppetlabs/puppetserver/conf.d/webserver.conf',
-    setting => 'webserver.ssl-ca-cert',
-    value   => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-  }
-
   service { 'puppet':
     ensure  => running,
     enable  => true,
@@ -149,6 +128,30 @@ class site_bchristianv::role::pos_puppet::compile_master (
 
   if $facts['poscm_is_configured'] {
     $puppetserver_start = true
+
+    hocon_setting { 'webserver.conf/webserver/ssl-cert':
+      ensure  => present,
+      path    => '/etc/puppetlabs/puppetserver/conf.d/webserver.conf',
+      setting => 'webserver.ssl-cert',
+      value   => "/etc/puppetlabs/puppet/ssl/certs/${facts['networking']['fqdn']}.pem",
+      before  => Class['puppetserver'],
+    }
+
+    hocon_setting { 'webserver.conf/webserver/ssl-key':
+      ensure  => present,
+      path    => '/etc/puppetlabs/puppetserver/conf.d/webserver.conf',
+      setting => 'webserver.ssl-key',
+      value   => "/etc/puppetlabs/puppet/ssl/private_keys/${facts['networking']['fqdn']}.pem",
+      before  => Class['puppetserver'],
+    }
+
+    hocon_setting { 'webserver.conf/webserver/ssl-ca-cert':
+      ensure  => present,
+      path    => '/etc/puppetlabs/puppetserver/conf.d/webserver.conf',
+      setting => 'webserver.ssl-ca-cert',
+      value   => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+      before  => Class['puppetserver'],
+    }
 
     class { 'puppetdb::master::config':
       puppetdb_server                => $puppet_mom_fqdn,

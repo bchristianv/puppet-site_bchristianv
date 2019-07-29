@@ -1,6 +1,6 @@
 {
   "name": "bchristianv-site_bchristianv",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "author": "bchristianv",
   "summary": "A Puppet module for site specific roles, profiles, and helper classes.",
   "license": "Apache-2.0",
@@ -23,6 +23,10 @@
     {
       "name": "puppetlabs/haproxy",
       "version_requirement": ">= 4.0.0 < 7.0.0"
+    },
+    {
+      "name": "puppetlabs/hocon",
+      "version_requirement": ">= 1.0.1 < 7.0.0"
     },
     {
       "name": "puppetlabs/inifile",

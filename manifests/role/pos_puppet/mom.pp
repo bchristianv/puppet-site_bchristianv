@@ -86,13 +86,6 @@ class site_bchristianv::role::pos_puppet::mom (
     value   => $facts['networking']['fqdn'],
   }
 
-  hocon_setting { 'ca.conf/certificate-authority/allow-subject-alt-names':
-    ensure  => present,
-    path    => '/etc/puppetlabs/puppetserver/conf.d/ca.conf',
-    setting => 'certificate-authority.allow-subject-alt-names',
-    value   => true,
-  }
-
   class { 'puppetserver':
     config  => {
       'java_args' => {
@@ -102,7 +95,6 @@ class site_bchristianv::role::pos_puppet::mom (
     },
     require => [
       Ini_setting['main-dns_alt_names', 'agent-server'],
-      Hocon_setting['ca.conf/certificate-authority/allow-subject-alt-names'],
     ]
   }
 
@@ -163,6 +155,14 @@ class site_bchristianv::role::pos_puppet::mom (
         port     => 8081,
         protocol => 'tcp',
       }
+    }
+
+    hocon_setting { 'ca.conf/certificate-authority/allow-subject-alt-names':
+      ensure  => present,
+      path    => '/etc/puppetlabs/puppetserver/conf.d/ca.conf',
+      setting => 'certificate-authority.allow-subject-alt-names',
+      value   => true,
+      notify  => Service['puppetserver'],
     }
 
     class { 'puppetdb':
