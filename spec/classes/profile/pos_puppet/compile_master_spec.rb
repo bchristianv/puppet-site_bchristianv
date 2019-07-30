@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'site_bchristianv::role::pos_puppet::mom' do
+describe 'site_bchristianv::profile::pos_puppet::compile_master' do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }

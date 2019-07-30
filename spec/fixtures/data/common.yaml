@@ -1,2 +1,6 @@
 ---
 message: "Hello, World!"
+site_bchristianv::profile::pos_puppet::compile_master::r10k_git_remote: foo
+site_bchristianv::profile::pos_puppet::compile_master::control_repo_sshkey_name: github.com
+site_bchristianv::profile::pos_puppet::compile_master::control_repo_sshkey_type: ssh-rsa
+site_bchristianv::profile::pos_puppet::compile_master::control_repo_sshkey_key: bar
