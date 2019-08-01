@@ -18,6 +18,9 @@ fixtures:
     haproxy:
       repo: "puppetlabs/haproxy"
       ref:  "4.0.0"
+    hocon:
+      repo: "puppetlabs/hocon"
+      ref:  "1.0.1"
     inifile:
       repo: "puppetlabs/inifile"
       ref:  "3.0.0"
