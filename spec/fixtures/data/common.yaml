@@ -5,3 +5,6 @@ site_bchristianv::profile::pos_puppet::compile_master::control_repo_sshkey_name:
 site_bchristianv::profile::pos_puppet::compile_master::control_repo_sshkey_type: ssh-rsa
 site_bchristianv::profile::pos_puppet::compile_master::control_repo_sshkey_key: bar
 site_bchristianv::role::pos_puppet::compile_master::mom_fqdn: mom.localdomain.local
+site_bchristianv::role::pos_puppet::reverse_proxy::pos_8140_backend_options_servers:
+  - server: cm1.localdomain.local 1.2.3.4:8140
+  - server: cm2.localdomain.local 5.6.7.8:8140
